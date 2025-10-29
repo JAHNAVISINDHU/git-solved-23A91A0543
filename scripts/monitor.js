@@ -135,3 +135,4 @@ if (ENV === 'experimental' && config.aiEnabled) {
 "echo 'Logging performance metrics'" ; git add scripts/monitor.js; git commit -m "perf: Add performance logging placeholder to monitor script"
 "const DB_TIMEOUT = 10" ; git add scripts/monitor.js; git commit -m "style: Define database timeout as constant in monitor script"
 "echo 'Logging performance metrics'" 
+"const DB_TIMEOUT = 10" 
