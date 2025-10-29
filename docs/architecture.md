@@ -81,4 +81,7 @@ DevOps Simulator follows an **event-driven microservices architecture** with AI/
 
 ### 5. Advanced Monitoring & Observability
 - **Metrics**: Prometheus + Thanos (long-term storage)
-- **Logs**: ELK Stack + AI log analysis
+- **Logs**: ELK Stack + AI log analysis"### API Endpoints" 
+"### API Endpoints" ; git add docs/architecture.md; git commit -m "docs: Document API endpoint section in architecture file"
+"### API Endpoints" ;
+"### API Endpoints" 
