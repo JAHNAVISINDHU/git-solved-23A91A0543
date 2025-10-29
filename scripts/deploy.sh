@@ -1,7 +1,7 @@
 #!/bin/bash
+# Multi-Environment Deploy Script (Production, Development, Experimental)
 set -e
 
-# Multi-Environment Deploy Script
 # Default to production if not specified
 DEPLOY_ENV=${DEPLOY_ENV:-production}
 
@@ -16,8 +16,15 @@ if [ ! -f "config/app-config.yaml" ]; then
     exit 1
 fi
 
+# Define Experimental Configuration Variables (Set to default/disabled)
+DEPLOY_STRATEGY="canary"
+DEPLOY_CLOUDS=("aws" "azure" "gcp")
+AI_OPTIMIZATION=false # CRITICAL: Default to false
+CHAOS_TESTING=false   # CRITICAL: Default to false
+
+
 if [ "$DEPLOY_ENV" = "production" ]; then
-    # Production configuration settings from HEAD
+    # --- PRODUCTION MODE (Stable) ---
     echo "Mode: Production (Rolling Update)"
     DEPLOY_REGION="us-east-1"
     APP_PORT=8080
@@ -26,7 +33,6 @@ if [ "$DEPLOY_ENV" = "production" ]; then
     echo "Region: $DEPLOY_REGION"
     echo "Port: $APP_PORT"
 
-    # Production deployment steps from HEAD
     echo "Starting production deployment..."
     echo "Pulling latest Docker images..."
     # docker pull devops-simulator:latest
@@ -37,7 +43,7 @@ if [ "$DEPLOY_ENV" = "production" ]; then
     echo "Application available at: https://app.example.com"
     
 elif [ "$DEPLOY_ENV" = "development" ]; then
-    # Development configuration settings from dev
+    # --- DEVELOPMENT MODE (Local) ---
     echo "Mode: Development (Docker Compose)"
     DEPLOY_MODE="docker-compose"
     APP_PORT=3000
@@ -48,7 +54,6 @@ elif [ "$DEPLOY_ENV" = "development" ]; then
     echo "Port: $APP_PORT"
     echo "Debug: $ENABLE_DEBUG"
 
-    # Development deployment steps from dev
     echo "Installing dependencies..."
     npm install
 
@@ -67,6 +72,57 @@ elif [ "$DEPLOY_ENV" = "development" ]; then
 
     echo "Hot reload enabled - code changes will auto-refresh"
     
+elif [ "$DEPLOY_ENV" = "experimental" ]; then
+    # --- EXPERIMENTAL MODE (Unstable AI/Multi-Cloud) ---
+    echo "================================================"
+    echo "WARNING: Running EXPERIMENTAL AI-POWERED DEPLOY"
+    echo "================================================"
+    
+    # Override settings for experimental mode (using settings from conflict-simulator)
+    AI_OPTIMIZATION=true
+    CHAOS_TESTING=true 
+
+    echo "Environment: $DEPLOY_ENV"
+    echo "Strategy: $DEPLOY_STRATEGY"
+    echo "Target Clouds: ${DEPLOY_CLOUDS[@]}"
+    echo "AI Optimization: $AI_OPTIMIZATION"
+    
+    # AI pre-deployment analysis
+    if [ "$AI_OPTIMIZATION" = true ]; then
+        echo "🤖 Running AI pre-deployment analysis..."
+        python3 scripts/ai-analyzer.py --analyze-deployment || echo "AI tool skipped."
+        echo "✓ AI analysis complete"
+    fi
+
+    # Deployment steps from conflict-simulator
+    for cloud in "${DEPLOY_CLOUDS[@]}"; do
+        echo "Validating $cloud configuration..."
+        # cloud-specific validation
+    done
+
+    echo "Starting multi-cloud deployment..."
+    for cloud in "${DEPLOY_CLOUDS[@]}"; do
+        echo "Deploying to $cloud..."
+        # Deployment logic per cloud
+        echo "✓ $cloud deployment initiated"
+    done
+    
+    # Canary and AI monitoring steps
+    echo "Initiating canary deployment strategy..."
+    echo "- Monitoring metrics..."
+    sleep 1 
+    echo "- 100% traffic to new version"
+
+    if [ "$AI_OPTIMIZATION" = true ]; then
+        echo "🤖 AI monitoring activated"
+    fi
+
+    if [ "$CHAOS_TESTING" = true ]; then
+        echo "⚠️  Running chaos engineering tests..."
+        # Chaos monkey logic
+    fi
+    echo "Experimental deployment completed!"
+
 else
     echo "Error: Unknown environment $DEPLOY_ENV"
     exit 1

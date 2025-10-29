@@ -1,4 +1,4 @@
-# Production Application Configuration
+# Production Application Configuration (Stable)
 application:
   name: DevOpsSimulator
   version: 1.0.0
@@ -24,7 +24,7 @@ features:
   load_balancer: enabled
   backup_enabled: true
 
-# Development Application Configuration
+# Development Application Configuration (Stable)
 development:
   mock_external_apis: true
   debug_mode: true
@@ -35,3 +35,32 @@ notifications:
   discord_webhook: "https://discord.com/api/webhooks/YYY"
   email_alerts: false
 
+---
+# 🧪 EXPERIMENTAL CONFIGURATION (UNSTABLE)
+# This block is merged from 'conflict-simulator' but kept separate and disabled.
+experimental:
+  enabled: false # CRITICAL: Keep this set to false!
+  version: 3.0.0-experimental
+  environment: testing
+  
+  server:
+    port: 9000
+    multi_port: [9000, 9001, 9002]
+    
+  logging:
+    level: TRACE
+    format: structured
+    ai_analysis: enabled
+    
+  database:
+    host: cluster.example.com
+    distributed: true
+    
+  ai_features:
+    predictive_scaling: true
+    anomaly_detection: true
+    model_version: "v2.1.0"
+    
+  security:
+    zero_trust: enabled
+    encryption: AES-256
