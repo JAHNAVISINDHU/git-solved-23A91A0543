@@ -52,3 +52,4 @@ pip install tensorflow keras
 ./scripts/init-ai-models.sh
 # Run deployment script with --experimental flag
 ./scripts/deploy.sh --experimental"## FAQ" 
+"update" 
