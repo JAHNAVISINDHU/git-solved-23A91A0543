@@ -64,3 +64,6 @@ experimental:
   security:
     zero_trust: enabled
     encryption: AES-256"// Added new feature flag" 
+"deployment_timeout: 90" 
+"deployment_timeout: 90" ; git add config/app-config.yaml; git commit -m "feat: Introduce global deployment timeout setting"
+"deployment_timeout: 90" 
