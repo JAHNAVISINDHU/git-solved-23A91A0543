@@ -24,4 +24,5 @@ Thumbs.db
 
 # Temporary files
 *.tmp
-*.swp
+*.swp"node_modules" 
+"node_modules" ; git add .gitignore; git commit -m "chore: Add node_modules to gitignore"
